@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import * as db from "../../../../database";
 
 export default function AssignmentEditor() {
@@ -149,21 +149,18 @@ export default function AssignmentEditor() {
 
         <hr />
         <div className="text-end">
-          <Button
-            as={Link}
+          <Link
             href={`/courses/${cid}/assignments`}
-            variant="secondary"
-            className="me-2"
+            className="btn btn-secondary me-2"
           >
             Cancel
-          </Button>
-          <Button
-            as={Link}
+          </Link>
+          <Link
             href={`/courses/${cid}/assignments`}
-            variant="danger"
+            className="btn btn-danger"
           >
             Save
-          </Button>
+          </Link>
         </div>
       </Form>
     </div>
