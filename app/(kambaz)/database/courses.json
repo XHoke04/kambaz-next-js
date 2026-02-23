@@ -1,0 +1,79 @@
+[
+  {
+    "_id": "4550",
+    "name": "CS4550 Web Development",
+    "number": "CS4550",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "CS",
+    "credits": 4,
+    "description": "Full Stack web application development",
+    "image": "/images/reactjs.jpg"
+  },
+  {
+    "_id": "4100",
+    "name": "CS4100 Artificial Intelligence",
+    "number": "CS4100",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "CS",
+    "credits": 4,
+    "description": "Search, planning, and reasoning",
+    "image": "/images/ai.jpg"
+  },
+  {
+    "_id": "3800",
+    "name": "CS3800 Theory of Computation",
+    "number": "CS3800",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "CS",
+    "credits": 4,
+    "description": "Formal languages and automata",
+    "image": "/images/TheoryOfComp.jpg"
+  },
+  {
+    "_id": "3650",
+    "name": "CS3650 Computer Systems",
+    "number": "CS3650",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "CS",
+    "credits": 4,
+    "description": "Low-level systems programming",
+    "image": "/images/systems.jpg"
+  },
+  {
+    "_id": "3500",
+    "name": "CS3500 Object-Oriented Design",
+    "number": "CS3500",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "CS",
+    "credits": 4,
+    "description": "Designing large software systems",
+    "image": "/images/ood.jpg"
+  },
+  {
+    "_id": "3200",
+    "name": "CS3200 Database Design",
+    "number": "CS3200",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "CS",
+    "credits": 4,
+    "description": "Relational databases and SQL",
+    "image": "/images/database.jpg"
+  },
+  {
+    "_id": "2800",
+    "name": "CS2800 Logic & Computation",
+    "number": "CS2800",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "CS",
+    "credits": 4,
+    "description": "Logic, proofs, and computation",
+    "image": "/images/logicandcomp.jpg"
+  }
+]

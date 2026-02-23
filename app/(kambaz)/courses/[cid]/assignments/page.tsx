@@ -1,13 +1,32 @@
 "use client";
 
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import { FaFileAlt, FaPlus, FaSearch } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "../modules/GreenCheckmark";
+import * as db from "../../../database";
 
 export default function Assignments() {
+  const { cid } = useParams<{ cid: string }>();
+  const assignments = db.assignments.filter(
+    (assignment) => assignment.course === cid
+  );
+
+  const formatDateTime = (value?: string) => {
+    if (!value) return "TBD";
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    });
+  };
+
   return (
     <div id="wd-assignments">
       <div className="d-flex align-items-center mb-4">
@@ -58,87 +77,41 @@ export default function Assignments() {
             </div>
           </div>
           <ListGroup className="rounded-0">
-            <ListGroupItem className="wd-assignment-item p-3 ps-1">
-              <div className="d-flex align-items-start">
-                <div className="me-3">
-                  <BsGripVertical className="me-2 fs-3" />
-                  <FaFileAlt className="text-success fs-4" />
-                </div>
-                <div className="flex-fill">
-                  <Link
-                    href="/courses/1234/assignments/123"
-                    className="wd-assignment-link text-decoration-none text-dark fw-bold"
-                  >
-                    A1
-                  </Link>
-                  <div className="text-muted small">
-                    Multiple Modules | <strong>Not available until</strong> May
-                    6 at 12:00am
+            {assignments.map((assignment) => (
+              <ListGroupItem
+                key={assignment._id}
+                className="wd-assignment-item p-3 ps-1"
+              >
+                <div className="d-flex align-items-start">
+                  <div className="me-3">
+                    <BsGripVertical className="me-2 fs-3" />
+                    <FaFileAlt className="text-success fs-4" />
                   </div>
-                  <div className="text-muted small">
-                    <strong>Due</strong> May 13 at 11:59pm | 100 pts
+                  <div className="flex-fill">
+                    <Link
+                      href={`/courses/${cid}/assignments/${assignment._id}`}
+                      className="wd-assignment-link text-decoration-none text-dark fw-bold"
+                    >
+                      {assignment.title}
+                    </Link>
+                    <div className="text-muted small">
+                      Multiple Modules |{" "}
+                      <strong>Not available until</strong>{" "}
+                      {formatDateTime(assignment.availableFrom)}
+                    </div>
+                    <div className="text-muted small">
+                      <strong>Due</strong>{" "}
+                      {formatDateTime(assignment.dueDate)} |{" "}
+                      {assignment.points ?? "TBD"} pts
+                    </div>
                   </div>
-                </div>
-                <div className="ms-auto">
-                  <GreenCheckmark />
-                  <IoEllipsisVertical className="fs-4" />
-                </div>
-              </div>
-            </ListGroupItem>
-            <ListGroupItem className="wd-assignment-item p-3 ps-1">
-              <div className="d-flex align-items-start">
-                <div className="me-3">
-                  <BsGripVertical className="me-2 fs-3" />
-                  <FaFileAlt className="text-success fs-4" />
-                </div>
-                <div className="flex-fill">
-                  <Link
-                    href="/courses/1234/assignments/124"
-                    className="wd-assignment-link text-decoration-none text-dark fw-bold"
-                  >
-                    A2
-                  </Link>
-                  <div className="text-muted small">
-                    Multiple Modules | <strong>Not available until</strong> May
-                    13 at 12:00am
-                  </div>
-                  <div className="text-muted small">
-                    <strong>Due</strong> May 20 at 11:59pm | 100 pts
+                  <div className="ms-auto">
+                    <GreenCheckmark />
+                    <IoEllipsisVertical className="fs-4" />
                   </div>
                 </div>
-                <div className="ms-auto">
-                  <GreenCheckmark />
-                  <IoEllipsisVertical className="fs-4" />
-                </div>
-              </div>
-            </ListGroupItem>
-            <ListGroupItem className="wd-assignment-item p-3 ps-1">
-              <div className="d-flex align-items-start">
-                <div className="me-3">
-                  <BsGripVertical className="me-2 fs-3" />
-                  <FaFileAlt className="text-success fs-4" />
-                </div>
-                <div className="flex-fill">
-                  <Link
-                    href="/courses/1234/assignments/125"
-                    className="wd-assignment-link text-decoration-none text-dark fw-bold"
-                  >
-                    A3
-                  </Link>
-                  <div className="text-muted small">
-                    Multiple Modules | <strong>Not available until</strong> May
-                    20 at 12:00am
-                  </div>
-                  <div className="text-muted small">
-                    <strong>Due</strong> May 27 at 11:59pm | 100 pts
-                  </div>
-                </div>
-                <div className="ms-auto">
-                  <GreenCheckmark />
-                  <IoEllipsisVertical className="fs-4" />
-                </div>
-              </div>
-            </ListGroupItem>
+              </ListGroupItem>
+            ))}
           </ListGroup>
         </ListGroupItem>
       </ListGroup>

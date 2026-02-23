@@ -1,0 +1,218 @@
+[
+  {
+    "_id": "A4550-1",
+    "title": "A1",
+    "description": "Build a simple portfolio and course landing page.",
+    "points": 100,
+    "dueDate": "2024-05-13T23:59",
+    "availableFrom": "2024-05-06T00:00",
+    "availableUntil": "2024-05-13T23:59",
+    "course": "4550"
+  },
+  {
+    "_id": "A4550-2",
+    "title": "A2",
+    "description": "Implement a React UI for Kambaz modules and assignments.",
+    "points": 100,
+    "dueDate": "2024-05-20T23:59",
+    "availableFrom": "2024-05-13T00:00",
+    "availableUntil": "2024-05-20T23:59",
+    "course": "4550"
+  },
+  {
+    "_id": "A4550-3",
+    "title": "A3",
+    "description": "Integrate data-driven routing and components.",
+    "points": 100,
+    "dueDate": "2024-05-27T23:59",
+    "availableFrom": "2024-05-20T00:00",
+    "availableUntil": "2024-05-27T23:59",
+    "course": "4550"
+  },
+
+  {
+    "_id": "A4100-1",
+    "title": "A1",
+    "description": "Search problems and heuristic evaluation.",
+    "points": 100,
+    "dueDate": "2024-05-14T23:59",
+    "availableFrom": "2024-05-07T00:00",
+    "availableUntil": "2024-05-14T23:59",
+    "course": "4100"
+  },
+  {
+    "_id": "A4100-2",
+    "title": "A2",
+    "description": "Logic representation and inference tasks.",
+    "points": 100,
+    "dueDate": "2024-05-21T23:59",
+    "availableFrom": "2024-05-14T00:00",
+    "availableUntil": "2024-05-21T23:59",
+    "course": "4100"
+  },
+  {
+    "_id": "A4100-3",
+    "title": "A3",
+    "description": "Planning and learning mini-project.",
+    "points": 100,
+    "dueDate": "2024-05-28T23:59",
+    "availableFrom": "2024-05-21T00:00",
+    "availableUntil": "2024-05-28T23:59",
+    "course": "4100"
+  },
+
+  {
+    "_id": "A3800-1",
+    "title": "A1",
+    "description": "Finite automata and regular languages problems.",
+    "points": 100,
+    "dueDate": "2024-05-15T23:59",
+    "availableFrom": "2024-05-08T00:00",
+    "availableUntil": "2024-05-15T23:59",
+    "course": "3800"
+  },
+  {
+    "_id": "A3800-2",
+    "title": "A2",
+    "description": "Context-free grammars and PDA exercises.",
+    "points": 100,
+    "dueDate": "2024-05-22T23:59",
+    "availableFrom": "2024-05-15T00:00",
+    "availableUntil": "2024-05-22T23:59",
+    "course": "3800"
+  },
+  {
+    "_id": "A3800-3",
+    "title": "A3",
+    "description": "Turing machines and decidability problems.",
+    "points": 100,
+    "dueDate": "2024-05-29T23:59",
+    "availableFrom": "2024-05-22T00:00",
+    "availableUntil": "2024-05-29T23:59",
+    "course": "3800"
+  },
+
+  {
+    "_id": "A3650-1",
+    "title": "A1",
+    "description": "Processes, threads, and scheduling.",
+    "points": 100,
+    "dueDate": "2024-05-16T23:59",
+    "availableFrom": "2024-05-09T00:00",
+    "availableUntil": "2024-05-16T23:59",
+    "course": "3650"
+  },
+  {
+    "_id": "A3650-2",
+    "title": "A2",
+    "description": "Memory, virtual memory, and paging.",
+    "points": 100,
+    "dueDate": "2024-05-23T23:59",
+    "availableFrom": "2024-05-16T00:00",
+    "availableUntil": "2024-05-23T23:59",
+    "course": "3650"
+  },
+  {
+    "_id": "A3650-3",
+    "title": "A3",
+    "description": "Concurrency and synchronization in C.",
+    "points": 100,
+    "dueDate": "2024-05-30T23:59",
+    "availableFrom": "2024-05-23T00:00",
+    "availableUntil": "2024-05-30T23:59",
+    "course": "3650"
+  },
+
+  {
+    "_id": "A3500-1",
+    "title": "A1",
+    "description": "Object modeling and UML diagrams.",
+    "points": 100,
+    "dueDate": "2024-05-17T23:59",
+    "availableFrom": "2024-05-10T00:00",
+    "availableUntil": "2024-05-17T23:59",
+    "course": "3500"
+  },
+  {
+    "_id": "A3500-2",
+    "title": "A2",
+    "description": "Design patterns in practice.",
+    "points": 100,
+    "dueDate": "2024-05-24T23:59",
+    "availableFrom": "2024-05-17T00:00",
+    "availableUntil": "2024-05-24T23:59",
+    "course": "3500"
+  },
+  {
+    "_id": "A3500-3",
+    "title": "A3",
+    "description": "Architectural tradeoffs report.",
+    "points": 100,
+    "dueDate": "2024-05-31T23:59",
+    "availableFrom": "2024-05-24T00:00",
+    "availableUntil": "2024-05-31T23:59",
+    "course": "3500"
+  },
+
+  {
+    "_id": "A3200-1",
+    "title": "A1",
+    "description": "ER modeling and normalization exercises.",
+    "points": 100,
+    "dueDate": "2024-05-18T23:59",
+    "availableFrom": "2024-05-11T00:00",
+    "availableUntil": "2024-05-18T23:59",
+    "course": "3200"
+  },
+  {
+    "_id": "A3200-2",
+    "title": "A2",
+    "description": "SQL queries and joins.",
+    "points": 100,
+    "dueDate": "2024-05-25T23:59",
+    "availableFrom": "2024-05-18T00:00",
+    "availableUntil": "2024-05-25T23:59",
+    "course": "3200"
+  },
+  {
+    "_id": "A3200-3",
+    "title": "A3",
+    "description": "Transactions and recovery scenarios.",
+    "points": 100,
+    "dueDate": "2024-06-01T23:59",
+    "availableFrom": "2024-05-25T00:00",
+    "availableUntil": "2024-06-01T23:59",
+    "course": "3200"
+  },
+
+  {
+    "_id": "A2800-1",
+    "title": "A1",
+    "description": "Propositional logic proofs.",
+    "points": 100,
+    "dueDate": "2024-05-19T23:59",
+    "availableFrom": "2024-05-12T00:00",
+    "availableUntil": "2024-05-19T23:59",
+    "course": "2800"
+  },
+  {
+    "_id": "A2800-2",
+    "title": "A2",
+    "description": "Predicate logic and quantifiers.",
+    "points": 100,
+    "dueDate": "2024-05-26T23:59",
+    "availableFrom": "2024-05-19T00:00",
+    "availableUntil": "2024-05-26T23:59",
+    "course": "2800"
+  },
+  {
+    "_id": "A2800-3",
+    "title": "A3",
+    "description": "Induction and proof techniques.",
+    "points": 100,
+    "dueDate": "2024-06-02T23:59",
+    "availableFrom": "2024-05-26T00:00",
+    "availableUntil": "2024-06-02T23:59",
+    "course": "2800"
+  }
+]

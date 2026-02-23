@@ -1,0 +1,548 @@
+[
+  {
+    "_id": "M4550-1",
+    "name": "Web Dev Foundations",
+    "description": "HTML, CSS, and the basics of the web.",
+    "course": "4550",
+    "lessons": [
+      {
+        "_id": "L4550-1-1",
+        "name": "The Web and HTTP",
+        "description": "How the web works and basic HTTP concepts.",
+        "module": "M4550-1"
+      },
+      {
+        "_id": "L4550-1-2",
+        "name": "HTML Structure",
+        "description": "Semantic HTML and page structure.",
+        "module": "M4550-1"
+      },
+      {
+        "_id": "L4550-1-3",
+        "name": "CSS Basics",
+        "description": "Selectors, layout, and styling.",
+        "module": "M4550-1"
+      }
+    ]
+  },
+  {
+    "_id": "M4550-2",
+    "name": "JavaScript and React",
+    "description": "Programming the browser with JS and React.",
+    "course": "4550",
+    "lessons": [
+      {
+        "_id": "L4550-2-1",
+        "name": "JavaScript Essentials",
+        "description": "Variables, functions, and DOM.",
+        "module": "M4550-2"
+      },
+      {
+        "_id": "L4550-2-2",
+        "name": "React Components",
+        "description": "Components, props, and state.",
+        "module": "M4550-2"
+      },
+      {
+        "_id": "L4550-2-3",
+        "name": "Hooks and Effects",
+        "description": "useState, useEffect, and data flow.",
+        "module": "M4550-2"
+      }
+    ]
+  },
+  {
+    "_id": "M4550-3",
+    "name": "Full Stack and APIs",
+    "description": "Servers, APIs, and deployment.",
+    "course": "4550",
+    "lessons": [
+      {
+        "_id": "L4550-3-1",
+        "name": "REST APIs",
+        "description": "Designing RESTful endpoints.",
+        "module": "M4550-3"
+      },
+      {
+        "_id": "L4550-3-2",
+        "name": "Databases",
+        "description": "Schemas, queries, and persistence.",
+        "module": "M4550-3"
+      },
+      {
+        "_id": "L4550-3-3",
+        "name": "Deployment",
+        "description": "Hosting and CI basics.",
+        "module": "M4550-3"
+      }
+    ]
+  },
+  {
+    "_id": "M4100-1",
+    "name": "Search and Problem Solving",
+    "description": "Classic search techniques and problem spaces.",
+    "course": "4100",
+    "lessons": [
+      {
+        "_id": "L4100-1-1",
+        "name": "Uninformed Search",
+        "description": "BFS, DFS, and uniform cost search.",
+        "module": "M4100-1"
+      },
+      {
+        "_id": "L4100-1-2",
+        "name": "Heuristic Search",
+        "description": "A* and greedy best-first search.",
+        "module": "M4100-1"
+      },
+      {
+        "_id": "L4100-1-3",
+        "name": "Adversarial Search",
+        "description": "Minimax and alpha-beta pruning.",
+        "module": "M4100-1"
+      }
+    ]
+  },
+  {
+    "_id": "M4100-2",
+    "name": "Knowledge and Reasoning",
+    "description": "Logic, inference, and representation.",
+    "course": "4100",
+    "lessons": [
+      {
+        "_id": "L4100-2-1",
+        "name": "Propositional Logic",
+        "description": "Syntax, semantics, and inference.",
+        "module": "M4100-2"
+      },
+      {
+        "_id": "L4100-2-2",
+        "name": "First-Order Logic",
+        "description": "Quantifiers and predicates.",
+        "module": "M4100-2"
+      },
+      {
+        "_id": "L4100-2-3",
+        "name": "Knowledge Bases",
+        "description": "Rules, facts, and inference engines.",
+        "module": "M4100-2"
+      }
+    ]
+  },
+  {
+    "_id": "M4100-3",
+    "name": "Learning and Planning",
+    "description": "Foundations of ML and planning.",
+    "course": "4100",
+    "lessons": [
+      {
+        "_id": "L4100-3-1",
+        "name": "Supervised Learning",
+        "description": "Classification and regression basics.",
+        "module": "M4100-3"
+      },
+      {
+        "_id": "L4100-3-2",
+        "name": "Unsupervised Learning",
+        "description": "Clustering and dimensionality reduction.",
+        "module": "M4100-3"
+      },
+      {
+        "_id": "L4100-3-3",
+        "name": "Planning",
+        "description": "State-space planning and heuristics.",
+        "module": "M4100-3"
+      }
+    ]
+  },
+  {
+    "_id": "M3800-1",
+    "name": "Automata and Languages",
+    "description": "Finite automata and regular languages.",
+    "course": "3800",
+    "lessons": [
+      {
+        "_id": "L3800-1-1",
+        "name": "Deterministic Automata",
+        "description": "DFA construction and examples.",
+        "module": "M3800-1"
+      },
+      {
+        "_id": "L3800-1-2",
+        "name": "Nondeterminism",
+        "description": "NFA and regex equivalence.",
+        "module": "M3800-1"
+      },
+      {
+        "_id": "L3800-1-3",
+        "name": "Regular Expressions",
+        "description": "Kleene star and regex design.",
+        "module": "M3800-1"
+      }
+    ]
+  },
+  {
+    "_id": "M3800-2",
+    "name": "Context-Free Languages",
+    "description": "CFGs and pushdown automata.",
+    "course": "3800",
+    "lessons": [
+      {
+        "_id": "L3800-2-1",
+        "name": "Grammars",
+        "description": "Productions and derivations.",
+        "module": "M3800-2"
+      },
+      {
+        "_id": "L3800-2-2",
+        "name": "PDA",
+        "description": "Pushdown automata basics.",
+        "module": "M3800-2"
+      },
+      {
+        "_id": "L3800-2-3",
+        "name": "Parsing",
+        "description": "Top-down and bottom-up parsing.",
+        "module": "M3800-2"
+      }
+    ]
+  },
+  {
+    "_id": "M3800-3",
+    "name": "Computability",
+    "description": "Turing machines and decidability.",
+    "course": "3800",
+    "lessons": [
+      {
+        "_id": "L3800-3-1",
+        "name": "Turing Machines",
+        "description": "Models of computation.",
+        "module": "M3800-3"
+      },
+      {
+        "_id": "L3800-3-2",
+        "name": "Decidable Problems",
+        "description": "Decidability and examples.",
+        "module": "M3800-3"
+      },
+      {
+        "_id": "L3800-3-3",
+        "name": "Undecidability",
+        "description": "Halting problem and reductions.",
+        "module": "M3800-3"
+      }
+    ]
+  },
+  {
+    "_id": "M3650-1",
+    "name": "Systems Foundations",
+    "description": "Processes, memory, and the OS.",
+    "course": "3650",
+    "lessons": [
+      {
+        "_id": "L3650-1-1",
+        "name": "Processes",
+        "description": "Process model and scheduling.",
+        "module": "M3650-1"
+      },
+      {
+        "_id": "L3650-1-2",
+        "name": "Threads",
+        "description": "Concurrency and synchronization.",
+        "module": "M3650-1"
+      },
+      {
+        "_id": "L3650-1-3",
+        "name": "Memory",
+        "description": "Virtual memory and paging.",
+        "module": "M3650-1"
+      }
+    ]
+  },
+  {
+    "_id": "M3650-2",
+    "name": "Systems Programming",
+    "description": "C, pointers, and systems APIs.",
+    "course": "3650",
+    "lessons": [
+      {
+        "_id": "L3650-2-1",
+        "name": "C Fundamentals",
+        "description": "Data types and pointers.",
+        "module": "M3650-2"
+      },
+      {
+        "_id": "L3650-2-2",
+        "name": "File I/O",
+        "description": "Files, descriptors, and streams.",
+        "module": "M3650-2"
+      },
+      {
+        "_id": "L3650-2-3",
+        "name": "System Calls",
+        "description": "Unix system call interface.",
+        "module": "M3650-2"
+      }
+    ]
+  },
+  {
+    "_id": "M3650-3",
+    "name": "Concurrency and Networking",
+    "description": "Networking basics and concurrent servers.",
+    "course": "3650",
+    "lessons": [
+      {
+        "_id": "L3650-3-1",
+        "name": "Sockets",
+        "description": "TCP/IP and socket programming.",
+        "module": "M3650-3"
+      },
+      {
+        "_id": "L3650-3-2",
+        "name": "Synchronization",
+        "description": "Locks and synchronization primitives.",
+        "module": "M3650-3"
+      },
+      {
+        "_id": "L3650-3-3",
+        "name": "Concurrent Servers",
+        "description": "Threaded server patterns.",
+        "module": "M3650-3"
+      }
+    ]
+  },
+  {
+    "_id": "M3500-1",
+    "name": "Object-Oriented Design",
+    "description": "Classes, objects, and design principles.",
+    "course": "3500",
+    "lessons": [
+      {
+        "_id": "L3500-1-1",
+        "name": "Classes and Objects",
+        "description": "Encapsulation and abstraction.",
+        "module": "M3500-1"
+      },
+      {
+        "_id": "L3500-1-2",
+        "name": "Inheritance",
+        "description": "Polymorphism and reuse.",
+        "module": "M3500-1"
+      },
+      {
+        "_id": "L3500-1-3",
+        "name": "Interfaces",
+        "description": "Designing with interfaces.",
+        "module": "M3500-1"
+      }
+    ]
+  },
+  {
+    "_id": "M3500-2",
+    "name": "Design Patterns",
+    "description": "Common patterns for large systems.",
+    "course": "3500",
+    "lessons": [
+      {
+        "_id": "L3500-2-1",
+        "name": "Factory Pattern",
+        "description": "Creational patterns and factories.",
+        "module": "M3500-2"
+      },
+      {
+        "_id": "L3500-2-2",
+        "name": "Observer Pattern",
+        "description": "Event-driven design.",
+        "module": "M3500-2"
+      },
+      {
+        "_id": "L3500-2-3",
+        "name": "Strategy Pattern",
+        "description": "Swappable algorithms.",
+        "module": "M3500-2"
+      }
+    ]
+  },
+  {
+    "_id": "M3500-3",
+    "name": "Software Architecture",
+    "description": "Layers, components, and tradeoffs.",
+    "course": "3500",
+    "lessons": [
+      {
+        "_id": "L3500-3-1",
+        "name": "Layered Architecture",
+        "description": "Separation of concerns.",
+        "module": "M3500-3"
+      },
+      {
+        "_id": "L3500-3-2",
+        "name": "MVC",
+        "description": "Model-View-Controller pattern.",
+        "module": "M3500-3"
+      },
+      {
+        "_id": "L3500-3-3",
+        "name": "Tradeoffs",
+        "description": "Performance vs. maintainability.",
+        "module": "M3500-3"
+      }
+    ]
+  },
+  {
+    "_id": "M3200-1",
+    "name": "Relational Design",
+    "description": "Modeling data with tables.",
+    "course": "3200",
+    "lessons": [
+      {
+        "_id": "L3200-1-1",
+        "name": "ER Modeling",
+        "description": "Entities and relationships.",
+        "module": "M3200-1"
+      },
+      {
+        "_id": "L3200-1-2",
+        "name": "Normalization",
+        "description": "Normal forms and redundancy.",
+        "module": "M3200-1"
+      },
+      {
+        "_id": "L3200-1-3",
+        "name": "Keys and Constraints",
+        "description": "Primary and foreign keys.",
+        "module": "M3200-1"
+      }
+    ]
+  },
+  {
+    "_id": "M3200-2",
+    "name": "SQL Queries",
+    "description": "Querying data with SQL.",
+    "course": "3200",
+    "lessons": [
+      {
+        "_id": "L3200-2-1",
+        "name": "SELECT Basics",
+        "description": "Filtering and projection.",
+        "module": "M3200-2"
+      },
+      {
+        "_id": "L3200-2-2",
+        "name": "Joins",
+        "description": "Combining tables with joins.",
+        "module": "M3200-2"
+      },
+      {
+        "_id": "L3200-2-3",
+        "name": "Aggregations",
+        "description": "GROUP BY and aggregates.",
+        "module": "M3200-2"
+      }
+    ]
+  },
+  {
+    "_id": "M3200-3",
+    "name": "Transactions",
+    "description": "Reliability and concurrency control.",
+    "course": "3200",
+    "lessons": [
+      {
+        "_id": "L3200-3-1",
+        "name": "ACID",
+        "description": "Atomicity, consistency, isolation, durability.",
+        "module": "M3200-3"
+      },
+      {
+        "_id": "L3200-3-2",
+        "name": "Isolation Levels",
+        "description": "Locks and isolation levels.",
+        "module": "M3200-3"
+      },
+      {
+        "_id": "L3200-3-3",
+        "name": "Recovery",
+        "description": "Logging and recovery.",
+        "module": "M3200-3"
+      }
+    ]
+  },
+  {
+    "_id": "M2800-1",
+    "name": "Logic Fundamentals",
+    "description": "Propositional and predicate logic.",
+    "course": "2800",
+    "lessons": [
+      {
+        "_id": "L2800-1-1",
+        "name": "Propositional Logic",
+        "description": "Statements and connectives.",
+        "module": "M2800-1"
+      },
+      {
+        "_id": "L2800-1-2",
+        "name": "Predicate Logic",
+        "description": "Quantifiers and predicates.",
+        "module": "M2800-1"
+      },
+      {
+        "_id": "L2800-1-3",
+        "name": "Proof Techniques",
+        "description": "Direct and indirect proofs.",
+        "module": "M2800-1"
+      }
+    ]
+  },
+  {
+    "_id": "M2800-2",
+    "name": "Computation and Proof",
+    "description": "Computability and formal proofs.",
+    "course": "2800",
+    "lessons": [
+      {
+        "_id": "L2800-2-1",
+        "name": "Induction",
+        "description": "Mathematical induction.",
+        "module": "M2800-2"
+      },
+      {
+        "_id": "L2800-2-2",
+        "name": "Sets and Relations",
+        "description": "Relations and functions.",
+        "module": "M2800-2"
+      },
+      {
+        "_id": "L2800-2-3",
+        "name": "Equivalence",
+        "description": "Equivalence relations.",
+        "module": "M2800-2"
+      }
+    ]
+  },
+  {
+    "_id": "M2800-3",
+    "name": "Logic in CS",
+    "description": "Logic applications in CS.",
+    "course": "2800",
+    "lessons": [
+      {
+        "_id": "L2800-3-1",
+        "name": "Specifications",
+        "description": "Formal specs and contracts.",
+        "module": "M2800-3"
+      },
+      {
+        "_id": "L2800-3-2",
+        "name": "Verification",
+        "description": "Proving program correctness.",
+        "module": "M2800-3"
+      },
+      {
+        "_id": "L2800-3-3",
+        "name": "Logic Programming",
+        "description": "Introduction to Prolog.",
+        "module": "M2800-3"
+      }
+    ]
+  }
+]
