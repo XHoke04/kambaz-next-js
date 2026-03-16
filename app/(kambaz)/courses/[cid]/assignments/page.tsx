@@ -3,16 +3,24 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { FaFileAlt, FaPlus, FaSearch } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "../modules/GreenCheckmark";
-import * as db from "../../../database";
+import { deleteAssignment } from "../../assignments/reducer";
+import { RootState } from "../../../store";
 
 export default function Assignments() {
   const { cid } = useParams<{ cid: string }>();
-  const assignments = db.assignments.filter(
-    (assignment) => assignment.course === cid
+  const { assignments } = useSelector(
+    (state: RootState) => state.assignmentsReducer,
+  );
+  const { currentUser } = useSelector((state: RootState) => state.accountReducer);
+  const dispatch = useDispatch();
+  const canManageAssignments = !!currentUser && currentUser.role !== "STUDENT";
+  const courseAssignments = assignments.filter(
+    (assignment) => assignment.course === cid,
   );
 
   const formatDateTime = (value?: string) => {
@@ -41,22 +49,28 @@ export default function Assignments() {
           </div>
         </div>
         <div className="ms-auto">
-          <Button
-            id="wd-add-assignment-group"
-            variant="secondary"
-            className="me-2 float-end"
-          >
-            <FaPlus className="me-2" />
-            Group
-          </Button>
-          <Button
-            id="wd-add-assignment"
-            variant="danger"
-            className="float-end"
-          >
-            <FaPlus className="me-2" />
-            Assignment
-          </Button>
+          {canManageAssignments && (
+            <>
+              <Button
+                id="wd-add-assignment-group"
+                variant="secondary"
+                className="me-2 float-end"
+              >
+                <FaPlus className="me-2" />
+                Group
+              </Button>
+              <Link href={`/courses/${cid}/assignments/new`}>
+                <Button
+                  id="wd-add-assignment"
+                  variant="danger"
+                  className="float-end"
+                >
+                  <FaPlus className="me-2" />
+                  Assignment
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
 
@@ -77,7 +91,7 @@ export default function Assignments() {
             </div>
           </div>
           <ListGroup className="rounded-0">
-            {assignments.map((assignment) => (
+            {courseAssignments.map((assignment) => (
               <ListGroupItem
                 key={assignment._id}
                 className="wd-assignment-item p-3 ps-1"
@@ -107,6 +121,22 @@ export default function Assignments() {
                   </div>
                   <div className="ms-auto">
                     <GreenCheckmark />
+                    {canManageAssignments && (
+                      <button
+                        className="btn btn-link text-danger p-0 ms-2"
+                        onClick={() => {
+                          const shouldDelete = window.confirm(
+                            "Are you sure you want to remove this assignment?",
+                          );
+                          if (shouldDelete) {
+                            dispatch(deleteAssignment(assignment._id));
+                          }
+                        }}
+                        id={`wd-delete-assignment-${assignment._id}`}
+                      >
+                        Delete
+                      </button>
+                    )}
                     <IoEllipsisVertical className="fs-4" />
                   </div>
                 </div>

@@ -1,29 +1,80 @@
 "use client";
 
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { Col, Form, Row } from "react-bootstrap";
-import * as db from "../../../../database";
+import { useState } from "react";
+import { redirect, useParams, useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Col, Form, Row } from "react-bootstrap";
+import {
+  addAssignment,
+  updateAssignment,
+} from "../../../assignments/reducer";
+import { RootState } from "../../../../store";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams<{ cid: string; aid: string }>();
-  const assignment = db.assignments.find(
-    (item) => item._id === aid && item.course === cid
+  const { assignments } = useSelector(
+    (state: RootState) => state.assignmentsReducer,
   );
+  const { currentUser } = useSelector((state: RootState) => state.accountReducer);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const canManageAssignments = !!currentUser && currentUser.role !== "STUDENT";
+  const existingAssignment = assignments.find(
+    (item) => item._id === aid && item.course === cid,
+  );
+  const createEmptyAssignment = () => ({
+    title: "New Assignment",
+    description: "New Assignment Description",
+    points: 100,
+    dueDate: "",
+    availableFrom: "",
+    availableUntil: "",
+    course: cid,
+  });
+  const [assignment, setAssignment] = useState(
+    () => existingAssignment ?? createEmptyAssignment(),
+  );
+
+  if (aid !== "new" && !existingAssignment) {
+    redirect(`/courses/${cid}/assignments`);
+  }
+
+  if (aid === "new" && !canManageAssignments) {
+    redirect(`/courses/${cid}/assignments`);
+  }
+
+  const saveAssignment = () => {
+    if (aid === "new") {
+      dispatch(addAssignment(assignment));
+    } else if (existingAssignment) {
+      dispatch(updateAssignment({ ...assignment, _id: existingAssignment._id }));
+    }
+    router.push(`/courses/${cid}/assignments`);
+  };
 
   return (
     <div id="wd-assignments-editor" className="pb-4">
       <Form>
         <Form.Group className="mb-3" controlId="wd-name">
           <Form.Label>Assignment Name</Form.Label>
-          <Form.Control defaultValue={assignment?.title ?? ""} />
+          <Form.Control
+            value={assignment.title}
+            disabled={!canManageAssignments}
+            onChange={(e) =>
+              setAssignment({ ...assignment, title: e.target.value })
+            }
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="wd-description">
           <Form.Control
             as="textarea"
             rows={6}
-            defaultValue={assignment?.description ?? ""}
+            value={assignment.description}
+            disabled={!canManageAssignments}
+            onChange={(e) =>
+              setAssignment({ ...assignment, description: e.target.value })
+            }
           />
         </Form.Group>
 
@@ -34,7 +85,14 @@ export default function AssignmentEditor() {
           <Col sm={9}>
             <Form.Control
               type="number"
-              defaultValue={assignment?.points ?? 100}
+              value={assignment.points}
+              disabled={!canManageAssignments}
+              onChange={(e) =>
+                setAssignment({
+                  ...assignment,
+                  points: Number(e.target.value || 0),
+                })
+              }
             />
           </Col>
         </Form.Group>
@@ -44,7 +102,7 @@ export default function AssignmentEditor() {
             Assignment Group
           </Form.Label>
           <Col sm={9}>
-            <Form.Select defaultValue="ASSIGNMENTS">
+            <Form.Select defaultValue="ASSIGNMENTS" disabled={!canManageAssignments}>
               <option value="ASSIGNMENTS">ASSIGNMENTS</option>
               <option value="QUIZZES">QUIZZES</option>
               <option value="EXAMS">EXAMS</option>
@@ -58,7 +116,7 @@ export default function AssignmentEditor() {
             Display Grade as
           </Form.Label>
           <Col sm={9}>
-            <Form.Select defaultValue="PERCENTAGE">
+            <Form.Select defaultValue="PERCENTAGE" disabled={!canManageAssignments}>
               <option value="PERCENTAGE">Percentage</option>
               <option value="LETTER">Letter Grade</option>
             </Form.Select>
@@ -70,7 +128,7 @@ export default function AssignmentEditor() {
             Submission Type
           </Form.Label>
           <Col sm={9}>
-            <Form.Select defaultValue="ONLINE">
+            <Form.Select defaultValue="ONLINE" disabled={!canManageAssignments}>
               <option value="ONLINE">Online</option>
               <option value="ON-PAPER">On Paper</option>
             </Form.Select>
@@ -81,6 +139,7 @@ export default function AssignmentEditor() {
                 id="wd-text-entry"
                 label="Text Entry"
                 className="mb-2"
+                disabled={!canManageAssignments}
               />
               <Form.Check
                 type="checkbox"
@@ -88,20 +147,28 @@ export default function AssignmentEditor() {
                 label="Website URL"
                 defaultChecked
                 className="mb-2"
+                disabled={!canManageAssignments}
               />
               <Form.Check
                 type="checkbox"
                 id="wd-media-recordings"
                 label="Media Recordings"
                 className="mb-2"
+                disabled={!canManageAssignments}
               />
               <Form.Check
                 type="checkbox"
                 id="wd-student-annotation"
                 label="Student Annotation"
                 className="mb-2"
+                disabled={!canManageAssignments}
               />
-              <Form.Check type="checkbox" id="wd-file-uploads" label="File Uploads" />
+              <Form.Check
+                type="checkbox"
+                id="wd-file-uploads"
+                label="File Uploads"
+                disabled={!canManageAssignments}
+              />
             </div>
           </Col>
         </Form.Group>
@@ -114,13 +181,17 @@ export default function AssignmentEditor() {
             <div className="border rounded p-3">
               <Form.Group className="mb-3" controlId="wd-assign-to">
                 <Form.Label>Assign to</Form.Label>
-                <Form.Control defaultValue="Everyone" />
+                <Form.Control defaultValue="Everyone" disabled={!canManageAssignments} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="wd-due-date">
                 <Form.Label>Due</Form.Label>
                 <Form.Control
                   type="datetime-local"
-                  defaultValue={assignment?.dueDate ?? ""}
+                  value={assignment.dueDate}
+                  disabled={!canManageAssignments}
+                  onChange={(e) =>
+                    setAssignment({ ...assignment, dueDate: e.target.value })
+                  }
                 />
               </Form.Group>
               <Row>
@@ -129,7 +200,14 @@ export default function AssignmentEditor() {
                     <Form.Label>Available from</Form.Label>
                     <Form.Control
                       type="datetime-local"
-                      defaultValue={assignment?.availableFrom ?? ""}
+                      value={assignment.availableFrom}
+                      disabled={!canManageAssignments}
+                      onChange={(e) =>
+                        setAssignment({
+                          ...assignment,
+                          availableFrom: e.target.value,
+                        })
+                      }
                     />
                   </Form.Group>
                 </Col>
@@ -138,7 +216,14 @@ export default function AssignmentEditor() {
                     <Form.Label>Until</Form.Label>
                     <Form.Control
                       type="datetime-local"
-                      defaultValue={assignment?.availableUntil ?? ""}
+                      value={assignment.availableUntil}
+                      disabled={!canManageAssignments}
+                      onChange={(e) =>
+                        setAssignment({
+                          ...assignment,
+                          availableUntil: e.target.value,
+                        })
+                      }
                     />
                   </Form.Group>
                 </Col>
@@ -149,18 +234,19 @@ export default function AssignmentEditor() {
 
         <hr />
         <div className="text-end">
-          <Link
-            href={`/courses/${cid}/assignments`}
-            className="btn btn-secondary me-2"
+          <Button
+            type="button"
+            variant="secondary"
+            className="me-2"
+            onClick={() => router.push(`/courses/${cid}/assignments`)}
           >
-            Cancel
-          </Link>
-          <Link
-            href={`/courses/${cid}/assignments`}
-            className="btn btn-danger"
-          >
-            Save
-          </Link>
+            {canManageAssignments ? "Cancel" : "Back"}
+          </Button>
+          {canManageAssignments && (
+            <Button type="button" variant="danger" onClick={saveAssignment}>
+              Save
+            </Button>
+          )}
         </div>
       </Form>
     </div>
