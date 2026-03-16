@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, FormControl, FormSelect } from "react-bootstrap";
 import { users } from "../../database";
@@ -20,14 +20,20 @@ export default function Profile() {
     setProfile(currentUser);
   }, [currentUser]);
 
-  if (!currentUser || !profile) {
-    redirect("/account/signin");
-  }
+  useEffect(() => {
+    if (!currentUser) {
+      router.replace("/account/signin");
+    }
+  }, [currentUser, router]);
 
   const signout = () => {
     dispatch(setCurrentUser(null));
-    router.push("/account/signin");
+    router.replace("/account/signin");
   };
+
+  if (!currentUser || !profile) {
+    return null;
+  }
 
   return (
     <div id="wd-profile-screen">
