@@ -1,10 +1,10 @@
 "use client";
 
-
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 
-export default function QueryCalculator() {
+function QueryCalculatorContent() {
  const searchParams = useSearchParams();
 
 
@@ -33,5 +33,13 @@ export default function QueryCalculator() {
 
      <h2 style={{ color: "green" }}>Sum = {sum}</h2>
    </div>
+ );
+}
+
+export default function QueryCalculator() {
+ return (
+   <Suspense fallback={<div style={{ padding: 40 }}>Loading query parameters...</div>}>
+     <QueryCalculatorContent />
+   </Suspense>
  );
 }
