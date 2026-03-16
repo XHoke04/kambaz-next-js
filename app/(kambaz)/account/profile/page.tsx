@@ -4,14 +4,17 @@ import { useEffect, useState } from "react";
 import { redirect, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, FormControl, FormSelect } from "react-bootstrap";
+import { users } from "../../database";
 import { setCurrentUser } from "../reducer";
 import { RootState } from "../../store";
+
+type User = (typeof users)[number];
 
 export default function Profile() {
   const { currentUser } = useSelector((state: RootState) => state.accountReducer);
   const dispatch = useDispatch();
   const router = useRouter();
-  const [profile, setProfile] = useState(currentUser);
+  const [profile, setProfile] = useState<User | null>(currentUser);
 
   useEffect(() => {
     setProfile(currentUser);
