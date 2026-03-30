@@ -1,26 +1,34 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { assignments as seedAssignments } from "../../database";
 
-type Assignment = (typeof seedAssignments)[number];
-type AssignmentDraft = Omit<Assignment, "_id">;
+export type Assignment = {
+  _id: string;
+  title: string;
+  description: string;
+  points: number;
+  dueDate: string;
+  availableFrom: string;
+  availableUntil: string;
+  course: string;
+};
+
+export type AssignmentDraft = Omit<Assignment, "_id">;
 
 const initialState: { assignments: Assignment[] } = {
-  assignments: seedAssignments,
+  assignments: [],
 };
 
 const assignmentsSlice = createSlice({
   name: "assignments",
   initialState,
   reducers: {
-    addAssignment: (
+    setAssignments: (
       state,
-      { payload: assignment }: PayloadAction<AssignmentDraft>,
+      { payload: assignments }: PayloadAction<Assignment[]>,
     ) => {
-      const newAssignment: Assignment = {
-        ...assignment,
-        _id: new Date().getTime().toString(),
-      };
-      state.assignments = [...state.assignments, newAssignment];
+      state.assignments = assignments;
+    },
+    addAssignment: (state, { payload: assignment }: PayloadAction<Assignment>) => {
+      state.assignments = [...state.assignments, assignment];
     },
     deleteAssignment: (
       state,
@@ -41,6 +49,6 @@ const assignmentsSlice = createSlice({
   },
 });
 
-export const { addAssignment, deleteAssignment, updateAssignment } =
+export const { setAssignments, addAssignment, deleteAssignment, updateAssignment } =
   assignmentsSlice.actions;
 export default assignmentsSlice.reducer;

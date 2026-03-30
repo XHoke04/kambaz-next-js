@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
@@ -8,7 +9,11 @@ import { FaFileAlt, FaPlus, FaSearch } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "../modules/GreenCheckmark";
-import { deleteAssignment } from "../../assignments/reducer";
+import * as client from "../../assignments/client";
+import {
+  deleteAssignment,
+  setAssignments,
+} from "../../assignments/reducer";
 import { RootState } from "../../../store";
 
 export default function Assignments() {
@@ -22,6 +27,14 @@ export default function Assignments() {
   const courseAssignments = assignments.filter(
     (assignment) => assignment.course === cid,
   );
+
+  useEffect(() => {
+    const fetchAssignments = async () => {
+      const nextAssignments = await client.findAssignmentsForCourse(cid);
+      dispatch(setAssignments(nextAssignments));
+    };
+    fetchAssignments();
+  }, [cid, dispatch]);
 
   const formatDateTime = (value?: string) => {
     if (!value) return "TBD";
@@ -124,11 +137,12 @@ export default function Assignments() {
                     {canManageAssignments && (
                       <button
                         className="btn btn-link text-danger p-0 ms-2"
-                        onClick={() => {
+                        onClick={async () => {
                           const shouldDelete = window.confirm(
                             "Are you sure you want to remove this assignment?",
                           );
                           if (shouldDelete) {
+                            await client.deleteAssignment(assignment._id);
                             dispatch(deleteAssignment(assignment._id));
                           }
                         }}

@@ -7,12 +7,17 @@ import { Button, FormControl, FormSelect } from "react-bootstrap";
 import { users } from "../../database";
 import { setCurrentUser } from "../reducer";
 import { RootState } from "../../store";
+import * as client from "../client";
 
 type User = (typeof users)[number];
 
 export default function Profile() {
   const { currentUser } = useSelector((state: RootState) => state.accountReducer);
   const dispatch = useDispatch();
+  const updateProfile = async () => {
+    const updatedProfile = await client.updateUser(profile);
+    dispatch(setCurrentUser(updatedProfile));
+  };
   const router = useRouter();
   const [profile, setProfile] = useState<User | null>(currentUser);
 
@@ -26,7 +31,8 @@ export default function Profile() {
     }
   }, [currentUser, router]);
 
-  const signout = () => {
+  const signout = async () => {
+    await client.signout();
     dispatch(setCurrentUser(null));
     router.replace("/account/signin");
   };
@@ -92,6 +98,7 @@ export default function Profile() {
         <option value="FACULTY">Faculty</option>
         <option value="STUDENT">Student</option>
       </FormSelect>
+      <button onClick={updateProfile} className="btn btn-primary w-100 mb-2"> Update </button>
       <Button variant="danger" className="w-100" onClick={signout}>
         Signout
       </Button>

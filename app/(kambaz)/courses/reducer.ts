@@ -1,10 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { courses } from "../database";
 
-type Course = (typeof courses)[number];
+type Course = {
+  _id: string;
+  name: string;
+  number: string;
+  startDate: string;
+  endDate: string;
+  department: string;
+  credits: number;
+  description: string;
+  image?: string;
+};
 
 const initialState: { courses: Course[] } = {
-  courses,
+  courses: [],
 };
 
 const coursesSlice = createSlice({

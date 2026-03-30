@@ -1,13 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { redirect, useParams, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import {
   addAssignment,
+  Assignment,
+  AssignmentDraft,
   updateAssignment,
 } from "../../../assignments/reducer";
+import * as client from "../../../assignments/client";
 import { RootState } from "../../../../store";
 
 export default function AssignmentEditor() {
@@ -22,7 +25,7 @@ export default function AssignmentEditor() {
   const existingAssignment = assignments.find(
     (item) => item._id === aid && item.course === cid,
   );
-  const createEmptyAssignment = () => ({
+  const createEmptyAssignment = (): AssignmentDraft => ({
     title: "New Assignment",
     description: "New Assignment Description",
     points: 100,
@@ -31,23 +34,75 @@ export default function AssignmentEditor() {
     availableUntil: "",
     course: cid,
   });
+  const toAssignmentDraft = (item: Assignment): AssignmentDraft => ({
+    title: item.title,
+    description: item.description,
+    points: item.points,
+    dueDate: item.dueDate,
+    availableFrom: item.availableFrom,
+    availableUntil: item.availableUntil,
+    course: item.course,
+  });
   const [assignment, setAssignment] = useState(
-    () => existingAssignment ?? createEmptyAssignment(),
+    () => (existingAssignment ? toAssignmentDraft(existingAssignment) : createEmptyAssignment()),
   );
+  const [pending, setPending] = useState(aid !== "new" && !existingAssignment);
 
-  if (aid !== "new" && !existingAssignment) {
-    redirect(`/courses/${cid}/assignments`);
-  }
+  useEffect(() => {
+    if (aid === "new") {
+      setPending(false);
+      return;
+    }
+    if (existingAssignment) {
+      setAssignment(toAssignmentDraft(existingAssignment));
+      setPending(false);
+      return;
+    }
+    const fetchAssignment = async () => {
+      try {
+        const nextAssignment = await client.findAssignmentById(aid);
+        if (!nextAssignment || nextAssignment.course !== cid) {
+          router.replace(`/courses/${cid}/assignments`);
+          return;
+        }
+        setAssignment(toAssignmentDraft(nextAssignment));
+      } catch (error) {
+        console.error(error);
+        router.replace(`/courses/${cid}/assignments`);
+      } finally {
+        setPending(false);
+      }
+    };
+    fetchAssignment();
+  }, [aid, cid, existingAssignment, router]);
 
   if (aid === "new" && !canManageAssignments) {
     redirect(`/courses/${cid}/assignments`);
   }
 
-  const saveAssignment = () => {
+  if (pending) {
+    return null;
+  }
+
+  const saveAssignment = async () => {
     if (aid === "new") {
-      dispatch(addAssignment(assignment));
+      const createdAssignment = await client.createAssignmentForCourse(
+        cid,
+        assignment,
+      );
+      dispatch(addAssignment(createdAssignment));
     } else if (existingAssignment) {
-      dispatch(updateAssignment({ ...assignment, _id: existingAssignment._id }));
+      const updatedAssignment = await client.updateAssignment({
+        ...assignment,
+        _id: existingAssignment._id,
+      });
+      dispatch(updateAssignment(updatedAssignment));
+    } else {
+      const updatedAssignment = await client.updateAssignment({
+        ...assignment,
+        _id: aid,
+      });
+      dispatch(updateAssignment(updatedAssignment));
     }
     router.push(`/courses/${cid}/assignments`);
   };

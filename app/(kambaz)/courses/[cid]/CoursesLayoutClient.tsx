@@ -2,10 +2,12 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaAlignJustify } from "react-icons/fa";
 import CourseNavigation from "./Navigation";
 import Breadcrumb from "./Breadcrumb";
+import * as enrollmentsClient from "../../enrollments/client";
+import { setEnrollments } from "../../enrollments/reducer";
 import { RootState } from "../../store";
 
 type CoursesLayoutClientProps = {
@@ -20,7 +22,9 @@ export default function CoursesLayoutClient({
   course,
 }: CoursesLayoutClientProps) {
   const [showNavigation, setShowNavigation] = useState(true);
+  const [pending, setPending] = useState(true);
   const router = useRouter();
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state: RootState) => state.accountReducer);
   const { enrollments } = useSelector(
     (state: RootState) => state.enrollmentsReducer,
@@ -32,12 +36,31 @@ export default function CoursesLayoutClient({
     );
 
   useEffect(() => {
-    if (!hasAccess) {
+    const fetchEnrollments = async () => {
+      if (!currentUser) {
+        dispatch(setEnrollments([]));
+        setPending(false);
+        return;
+      }
+      try {
+        const nextEnrollments = await enrollmentsClient.findMyEnrollments();
+        dispatch(setEnrollments(nextEnrollments));
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setPending(false);
+      }
+    };
+    fetchEnrollments();
+  }, [currentUser, dispatch]);
+
+  useEffect(() => {
+    if (!pending && !hasAccess) {
       router.replace("/dashboard");
     }
-  }, [hasAccess, router]);
+  }, [hasAccess, pending, router]);
 
-  if (!hasAccess) {
+  if (pending || !hasAccess) {
     return null;
   }
 
