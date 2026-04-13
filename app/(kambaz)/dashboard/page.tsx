@@ -176,14 +176,13 @@ export default function Dashboard() {
                         onClick={async (event) => {
                           event.preventDefault();
                           if (isEnrolled) {
-                            const nextEnrollments =
-                              await enrollmentsClient.unenrollFromCourse(course._id);
-                            dispatch(setEnrollments(nextEnrollments));
+                            await client.unenrollFromCourse(currentUser._id, course._id);
                           } else {
-                            const nextEnrollments =
-                              await enrollmentsClient.enrollInCourse(course._id);
-                            dispatch(setEnrollments(nextEnrollments));
+                            await client.enrollIntoCourse(currentUser._id, course._id);
                           }
+                          const nextEnrollments =
+                            await enrollmentsClient.findMyEnrollments();
+                          dispatch(setEnrollments(nextEnrollments));
                           const nextCourses = await client.findMyCourses();
                           dispatch(setCourses(nextCourses));
                         }}

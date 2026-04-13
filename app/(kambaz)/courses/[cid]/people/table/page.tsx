@@ -1,17 +1,22 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import * as db from "../../../../database";
 import PeopleTable from "../Table";
+import * as client from "../../../client";
 
 export default function PeopleTablePage() {
   const { cid } = useParams<{ cid: string }>();
-  const { users, enrollments } = db;
-  const courseUsers = users.filter((usr) =>
-    enrollments.some(
-      (enrollment) => enrollment.user === usr._id && enrollment.course === cid
-    )
-  );
+  const [users, setUsers] = useState<any[]>([]);
 
-  return <PeopleTable users={courseUsers} />;
+  const fetchUsers = async () => {
+    const courseUsers = await client.findUsersForCourse(cid);
+    setUsers(courseUsers);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, [cid]);
+
+  return <PeopleTable users={users} fetchUsers={fetchUsers} />;
 }
