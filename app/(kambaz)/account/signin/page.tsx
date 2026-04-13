@@ -5,24 +5,30 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button, FormControl } from "react-bootstrap";
-import * as db from "../../database";
 import { setCurrentUser } from "../reducer";
 import * as client from "../client";
-
 
 export default function Signin() {
   const [credentials, setCredentials] = useState<{
     username?: string;
     password?: string;
   }>({});
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const signin = async() => {
-    const user = await client.signin(credentials);
-    if (!user) return;
-    dispatch(setCurrentUser(user));
-    router.push("/dashboard");
+  const signin = async () => {
+    try {
+      setError("");
+      const user = await client.signin(credentials);
+      if (!user) return;
+      dispatch(setCurrentUser(user));
+      router.push("/dashboard");
+    } catch (error: any) {
+      setError(
+        error.response?.data?.message || "Unable to login. Try again later.",
+      );
+    }
   };
 
   return (
@@ -54,6 +60,7 @@ export default function Signin() {
       >
         Signin
       </Button>
+      {error && <div className="text-danger mb-2">{error}</div>}
       <Link id="wd-signup-link" href="/account/signup">
         Signup
       </Link>
